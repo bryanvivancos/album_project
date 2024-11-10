@@ -1,0 +1,6 @@
+*.db
+*.py[cod]
+.alb-env
+.web
+__pycache__/
+assets/external/
