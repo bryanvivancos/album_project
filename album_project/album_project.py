@@ -1,18 +1,11 @@
-"""Welcome to Reflex! This file outlines the steps to create a basic app."""
 
 import reflex as rx
-from album_project.pages.index import index
+import album_project.styles.styles as styles
+from album_project.pages.album import index
 
 
 
-# class State(rx.State):
-#     """The app state."""
-
-#     ...
-
-
-
-
-
-app = rx.App()
-app.add_page(index)
+app = rx.App(
+    stylesheets= styles.STYLESHEETS,
+    style= styles.BASE_STYLE,
+)
