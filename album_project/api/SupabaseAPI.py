@@ -1,5 +1,6 @@
 import os
 import dotenv
+import datetime
 from supabase import create_client, Client
 from album_project.model.Items import Items
 
@@ -16,7 +17,7 @@ class SupabaseAPI:
                 self.SUPABASE_URL, self.SUPABASE_KEY
             )
     
-    def items(self) -> list[Items]:
+    def select_items(self) -> list[Items]:
         
         response = self.supabase.table("items").select("*").execute()
         
@@ -27,8 +28,17 @@ class SupabaseAPI:
                 items_data.append(
                     Items(
                         title=items_item["title"],
-                        image= items_item["image"],
+                        description= items_item["description"],
                         )
                     )
-        
         return items_data
+
+    def insert_items(self, title: str, image: str) -> dict:
+
+        data= {"title": title, "image": image, "creation_date": datetime.date.today()}
+        response= self.supabase.table("items").insert(data).execute()
+
+        if response.data:
+            return {"message": "Item inserted sucessfully", "form_data": data}
+        else:
+            return {"message": "Failed to insert item", "error": response.error}

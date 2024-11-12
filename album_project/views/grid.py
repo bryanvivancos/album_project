@@ -17,20 +17,23 @@ def grid() -> rx.Component:
             padding="2em"
         ),
         rx.divider(),
-        rx.cond(
-            PageState.items_info,
-            rx.vstack(
-                rx.grid(
-                    rx.foreach(
-                        PageState.items_info,
-                        item_data, # Aplica `item_data` a cada `item`
+        rx.center(
+            rx.cond(
+                PageState.items_info,
+                rx.vstack(
+                    rx.grid(
+                        rx.foreach(
+                            PageState.items_info,
+                            item_data, # Aplica `item_data` a cada `item`
+                        ),
+                        columns=rx.breakpoints(initial="1",sm="2",md="2",lg="4"),
+                        spacing=Size.DEFAULT.value,
                     ),
-                    columns=rx.breakpoints(initial="1",sm="2",md="2",lg="4"),
                     spacing=Size.DEFAULT.value,
                 ),
-                spacing=Size.DEFAULT.value
+                rx.text("No items found"),  # Muestra un mensaje si `items` está vacio
             ),
-            rx.text("No items found"),  # Muestra un mensaje si `items` está vacio
+            width= "100%",
         ),
         bg_color=Color.SECONDARY.value,
         border_radius= Size.DEFAULT.value,

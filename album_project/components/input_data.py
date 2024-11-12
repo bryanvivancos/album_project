@@ -1,5 +1,6 @@
 import reflex as rx
 from album_project.styles.colors import Color as Color
+from album_project.state.PageState import PageState
 
 def input_data() -> rx.Component:
     return rx.vstack(
@@ -7,12 +8,12 @@ def input_data() -> rx.Component:
             rx.vstack(
                 rx.input(
                     placeholder="Product",
-                    name="first_name",
+                    name="title",
                     width="100%",
                 ),
                 rx.input(
                     placeholder="Description",
-                    name="first_name",
+                    name="description",
                     width="100%",
                 ),
                 rx.center(
@@ -23,6 +24,8 @@ def input_data() -> rx.Component:
                     width="100%",
                 ),
             ),
+            on_submit=PageState.handle_submit,
+            reset_on_submit=True,
         ),
         width="100%",
     )
