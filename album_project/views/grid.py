@@ -6,31 +6,33 @@ from album_project.model.Items import Items
 from album_project.components.item_data import item_data
 from album_project.state.PageState import PageState
 from album_project.components.title import title
+from album_project.components.input_data import input_data
+from album_project.views.menu_bar import menu_bar
 
 def grid() -> rx.Component:
     return rx.vstack(
+        rx.center(
+            menu_bar(),
+            width="100%",
+            padding="2em"
+        ),
+        rx.divider(),
         rx.cond(
             PageState.items_info,
             rx.vstack(
-                title("Items"),
-                rx.flex(
+                rx.grid(
                     rx.foreach(
                         PageState.items_info,
-                        lambda item: item_data(item),  # Aplica `item_data` a cada `item`
+                        item_data, # Aplica `item_data` a cada `item`
                     ),
-                    flex_direction=["column", "row"],
+                    columns=rx.breakpoints(initial="1",sm="2",md="2",lg="4"),
+                    spacing=Size.DEFAULT.value,
                 ),
+                spacing=Size.DEFAULT.value
             ),
-            rx.text("No items found"),  # Muestra un mensaje si `items` está vacío
+            rx.text("No items found"),  # Muestra un mensaje si `items` está vacio
         ),
         bg_color=Color.SECONDARY.value,
         border_radius= Size.DEFAULT.value,
         padding= Size.DEFAULT.value,
     ),
-    
-    
-    # columns= rx.breakpoints(initial="1", sm="3", md="4"),
-        # spacing="3",
-        # align_items= "center",
-        # justify_content= "center", 
-        # width="100%",

@@ -1,9 +1,9 @@
 import reflex as rx 
 from enum import Enum
 from album_project.styles.fonts import Font,FontWeight
-from album_project.styles.colors import Color
+from album_project.styles.colors import Color,TextColor
 
-MAX_WIDTH = "720px"
+MAX_WIDTH = "768px"
 
 #FONTS
 
@@ -25,12 +25,42 @@ class Size(Enum):
 BASE_STYLE = {
     "font_family": Font.DEFAULT.value,
     "font_weigth": FontWeight.LIGHT.value,
-    "background_color": Color.BACKGROUND.value,
     "font_size": Size.DEFAULT.value,
+    "font_color": TextColor.BODY.value,
+    "background_color": Color.BACKGROUND.value,
+    rx.accordion.item:{
+        "background_color": Color.BACKGROUND.value,
+        "hover_style":{
+            "background_color": "#132D46",
+        },
+    },
+    rx.accordion.trigger:{
+        "hover_style":{
+            "background_color": "#132D46",
+        },
+    },
+    # rx.accordion.trigger:{
+    #     ":hover": {
+    #         "background_color:": Color.PRIMARY.value
+    #     }
+    # },
+    rx.button: {
+        "background_color": Color.PRIMARY.value,
+        "_hover": {
+            "background_color": Color.SECONDARY.value,
+        }
+    }
 }
 
 title_style = dict(
     width="100%",
-    padding_top=Size.DEFAULT.value,
-    font_size=Size.XBIG.value
+    font_size=Size.DEFAULT.value,
+    font_weigth=FontWeight.BOLD.value,
+)
+
+
+
+item_data_style = dict(
+    background_color=Color.PRIMARY.value,
+    border_radius= Size.DEFAULT.value,
 )

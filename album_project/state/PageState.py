@@ -7,6 +7,6 @@ class PageState(rx.State):
     items_info: list[Items]
     
     async def items_grid(self):
-        data = await items_api()
-        print(data)
+        # data = await items_api()
+        # print(data)
         self.items_info = await items_api()

@@ -26,10 +26,9 @@ class SupabaseAPI:
             for items_item in response.data:
                 items_data.append(
                     Items(
-                        title=items_item["title"], 
-                        date= items_item["creation_date"],
+                        title=items_item["title"],
                         image= items_item["image"],
                         )
                     )
         
-        return items_data, len(response.data)
+        return items_data

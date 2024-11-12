@@ -16,9 +16,9 @@ def index() -> rx.Component:
         rx.center(
             rx.vstack(
                     grid(),
-                max_width= styles.MAX_WIDTH,    
-                width="100%",
+                max_width= styles.MAX_WIDTH, 
                 margin_y= Size.XBIG.value,
             ),
         ),
+        width= "100%",
     )
