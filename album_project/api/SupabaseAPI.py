@@ -40,6 +40,6 @@ class SupabaseAPI:
         response= self.supabase.table("items").insert(data).execute()
 
         if response.data:
-            return {"message": "Item inserted sucessfully", "form_data": data}
+            print ({"message": "Item inserted sucessfully", "form_data": data})
         else:
-            return {"message": "Failed to insert item", "error": response.error}
+            print ({"message": "Failed to insert item", "error": response.error})

@@ -6,7 +6,8 @@ from album_project.styles.colors import Color
 
 def menu_bar() -> rx.Component:
     return rx.center(
-        rx.accordion.root(
+        rx.stack(
+            rx.accordion.root(
             rx.accordion.item(
                 header= "Ingrese aquí los datos:",
                 content=rx.center(input_data()),
@@ -17,8 +18,9 @@ def menu_bar() -> rx.Component:
                 content="Yes. It's unstyled by default, giving you freedom over the look and feel.",
             ),
             collapsible=True,
+            ),
             max_width= "450px",
+            width= "100%",
         ),
-        width= "100%",
     )
 
