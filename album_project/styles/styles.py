@@ -30,35 +30,31 @@ BASE_STYLE = {
     "background_color": Color.BACKGROUND.value,
     rx.accordion.item:{
         "background_color": Color.BACKGROUND.value,
-        "hover_style":{
-            "background_color": "#132D46",
-        },
     },
     rx.accordion.trigger:{
-        "hover_style":{
-            "background_color": "#132D46",
-        },
-    },
-    # rx.accordion.trigger:{
-    #     ":hover": {
-    #         "background_color:": Color.PRIMARY.value
-    #     }
-    # },
-    rx.button: {
-        "background_color": Color.PRIMARY.value,
         "_hover": {
             "background_color": Color.SECONDARY.value,
-        }
-    }
+        },
+    },
+    rx.button: {
+        "background_color": Color.PRIMARY.value,
+    },
+    # rx.link : {
+    #     "text_decoration": "none",
+    #     "_hover": {},
+    # },
 }
 
 title_style = dict(
     width="100%",
     font_size=Size.DEFAULT.value,
     font_weigth=FontWeight.BOLD.value,
+),
+
+link_style = dict(
+    text_decoration= "none",
+    _hover= {},
 )
-
-
 
 item_data_style = dict(
     background_color=Color.PRIMARY.value,

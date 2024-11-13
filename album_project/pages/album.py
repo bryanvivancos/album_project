@@ -1,13 +1,14 @@
 import reflex as rx
 import album_project.styles.styles as styles
+from album_project.styles.colors import Color
 from album_project.styles.styles import Size
 from album_project.views.grid import grid
 from album_project.components.navbar import navbar
-from album_project.state.PageState import PageState
+from album_project.views.menu_bar import menu_bar
 
 
 @rx.page(
-        on_load= PageState.items_grid,
+      #  on_load= PageState.items_grid,
 )
 def index() -> rx.Component:
     # Album Page
@@ -15,13 +16,17 @@ def index() -> rx.Component:
         navbar(),
         rx.center(
             rx.vstack(
+                menu_bar(),
+                rx.divider(),
                 grid(),
-                width= "100%",
+                max_width= styles.MAX_WIDTH,
+                width="100%",
                 margin_y= Size.XBIG.value,
-                margin_x=Size.MEDIUM.value,
+                bg_color=Color.SECONDARY.value,
+                border_radius= Size.DEFAULT.value,
+                padding= Size.DEFAULT.value,
+                spacing= Size.XBIG.value,
             ), 
-            width= "100%",
-            justify= "center",
+            margin_x=Size.MEDIUM.value,
         ),
-        width= "100d%",
     )

@@ -25,6 +25,6 @@ def item_data(data: Items) -> rx.Component:
             padding= Size.MEDIUM.value,
         ),
         href="#",
-        text_decoration= "none",
+        style= styles.link_style,
     )
 

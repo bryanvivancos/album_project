@@ -10,17 +10,18 @@ def input_data() -> rx.Component:
                     placeholder="Product",
                     name="title",
                     width="100%",
+                    required= True,
                 ),
                 rx.input(
                     placeholder="Description",
                     name="description",
                     width="100%",
+                    required= True,
                 ),
                 rx.center(
                     rx.button(
                     "Submit", 
                     type="submit",
-                    on_click=PageState.items_grid,
                     ),
                     width="100%",
                 ),
