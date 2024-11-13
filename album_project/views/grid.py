@@ -6,7 +6,6 @@ from album_project.model.Items import Items
 from album_project.components.item_data import item_data
 from album_project.state.PageState import PageState
 from album_project.components.title import title
-from album_project.components.input_data import input_data
 from album_project.views.menu_bar import menu_bar
 
 def grid() -> rx.Component:
@@ -38,4 +37,6 @@ def grid() -> rx.Component:
         bg_color=Color.SECONDARY.value,
         border_radius= Size.DEFAULT.value,
         padding= Size.DEFAULT.value,
+        max_width= styles.MAX_WIDTH,
+        width= "100%",
     ),

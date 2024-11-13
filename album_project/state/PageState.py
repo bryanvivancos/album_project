@@ -10,11 +10,11 @@ class PageState(rx.State):
     items_info: list[Items]
     
     async def items_grid(self):
-        # data = await items_api()
-        # print(data)
+        data = await items_api()
+        print(data)
         self.items_info = await items_api()
 
     @rx.event
-    def handle_submit(self, form_data: dict):
-        print(form_data, datetime.date.today())
-        self.form_data = form_data
+    async def handle_submit(self, form_data):
+        print(form_data['title'], form_data['description'], datetime.date.today())
+        await input_api(form_data['title'], form_data['description'])

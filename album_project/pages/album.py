@@ -7,7 +7,7 @@ from album_project.state.PageState import PageState
 
 
 @rx.page(
-    on_load= PageState.items_grid
+        on_load= PageState.items_grid,
 )
 def index() -> rx.Component:
     # Album Page
@@ -15,10 +15,13 @@ def index() -> rx.Component:
         navbar(),
         rx.center(
             rx.vstack(
-                    grid(),
-                max_width= styles.MAX_WIDTH, 
+                grid(),
+                width= "100%",
                 margin_y= Size.XBIG.value,
-            ),
+                margin_x=Size.MEDIUM.value,
+            ), 
+            width= "100%",
+            justify= "center",
         ),
-        width= "100%",
+        width= "100d%",
     )

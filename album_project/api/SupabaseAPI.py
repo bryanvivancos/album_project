@@ -33,9 +33,10 @@ class SupabaseAPI:
                     )
         return items_data
 
-    def insert_items(self, title: str, image: str) -> dict:
+    def insert_items(self, title: str, description: str) -> dict:
 
-        data= {"title": title, "image": image, "creation_date": datetime.date.today()}
+        date=  datetime.date.today()
+        data= {"title": title, "description": description, "creation_date": date.isoformat()}
         response= self.supabase.table("items").insert(data).execute()
 
         if response.data:

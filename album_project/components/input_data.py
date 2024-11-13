@@ -20,6 +20,7 @@ def input_data() -> rx.Component:
                     rx.button(
                     "Submit", 
                     type="submit",
+                    on_click=PageState.items_grid,
                     ),
                     width="100%",
                 ),
