@@ -22,13 +22,16 @@ def grid() -> rx.Component:
                         ),
                         columns=rx.breakpoints(initial="1",xs="2", sm="2",md="4",lg="4"),
                         spacing=Size.DEFAULT.value,
+                        width= "100%",
                     ),
                     spacing=Size.DEFAULT.value,
+                    width= "100%",
                 ),
                 rx.text("No items found"),  # Muestra un mensaje si `items` está vacio
             ),
             on_mount= PageState.items_grid,
             spacing= Size.DEFAULT.value,
+            width= "480px",
         ),
         width= "100%",
     )

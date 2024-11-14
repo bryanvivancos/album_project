@@ -17,6 +17,7 @@ def index() -> rx.Component:
         rx.center(
             rx.vstack(
                 menu_bar(),
+                
                 rx.divider(),
                 grid(),
                 max_width= styles.MAX_WIDTH,

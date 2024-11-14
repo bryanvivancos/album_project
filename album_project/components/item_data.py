@@ -14,6 +14,10 @@ def item_data(data: Items) -> rx.Component:
             #     alt=f"Imagen destacada para: {data.title}",
             # ),
             rx.text(
+                data.id,
+                size= "1px",
+            ),
+            rx.text(
                 data.title,
                 size= "1px",
             ),

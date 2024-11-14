@@ -5,6 +5,7 @@ from album_project.styles.colors import Color,TextColor
 
 MAX_WIDTH = "768px"
 
+
 #FONTS
 
 STYLESHEETS= [
