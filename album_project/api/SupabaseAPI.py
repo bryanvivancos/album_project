@@ -55,7 +55,10 @@ class SupabaseAPI:
 
     ####################################################
     def delete_item(self, item_id: int):
+        print(item_id)
 
+        data= {"id": item_id}
+        print(data)
         response= self.supabase.table("items").delete().eq("id",item_id).execute()
 
         if response.data:

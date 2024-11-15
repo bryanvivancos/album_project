@@ -8,8 +8,10 @@ class PageState(rx.State):
     
     form_data: dict= {}
     items_info: list[Items]
+    input_title_value: str= ""
     
-    
+
+
     async def items_grid(self):
         # data = await items_api()
         # print(data)
@@ -22,5 +24,7 @@ class PageState(rx.State):
     
 
     ############################################
-    async def delete_button(self,form_data):
+    @rx.event
+    async def delete_button(self, form_data):
+        print(int(form_data["title"]), type(int(form_data["title"])))
         await delete_api(int(form_data["title"]))

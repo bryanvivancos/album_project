@@ -13,4 +13,5 @@ async def input_api(title: str, description: str) -> list[Items]:
 
 ##############################################3
 async def delete_api(id: int):
-    return SupabaseAPI.delete_item(id)
+    #print(id)
+    return SUPABASE_API.delete_item(id)

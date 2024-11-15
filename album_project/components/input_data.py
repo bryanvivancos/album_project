@@ -18,7 +18,7 @@ def input_data() -> rx.Component:
                     placeholder="Description",
                     name="description",
                     width="100%",
-                    required= True,
+                    #required= True,
                 ),
                 rx.center(
                     rx.hstack(
@@ -28,6 +28,7 @@ def input_data() -> rx.Component:
                         ),
                         rx.button(
                             "Delete",
+                            type="submit",
                             #on_click= PageState.delete_button,
                         ),
                     ),
@@ -35,7 +36,8 @@ def input_data() -> rx.Component:
                 ),
             ),
             on_submit=[
-                PageState.handle_submit,
+                PageState.delete_button,
+                #PageState.handle_submit,
                 #PageState.items_grid, 
                 #rx.window_alert(" "),
             ],
