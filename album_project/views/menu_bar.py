@@ -9,14 +9,8 @@ def menu_bar() -> rx.Component:
     return rx.center(
         rx.accordion.root(
             rx.accordion.item(
-                # rx.accordion.trigger(
-                #     "Ingrese aquí los datos:",
-                #     style= styles.accordion_trigger_style,
-                # ),
-                # rx.accordion.content(rx.center(input_data())),
                 header= "Ingrese aquí los datos:",
-                content= rx.center(input_data())
-                #style= styles.accordion_trigger_style,
+                content= rx.center(input_data()),
             ),
             rx.accordion.item(
                 header= "Filtros:",

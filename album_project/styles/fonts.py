@@ -1,8 +1,8 @@
 from enum import Enum
 
 class Font(Enum):
-    DEFAULT= "Quicksand"
-    TITLE= "Quicksand"
+    DEFAULT= "Quicksand !important"
+    TITLE= "Quicksand !important"
     NAVBAR= "" 
     
 class FontWeight(Enum):

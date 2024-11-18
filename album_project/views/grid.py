@@ -6,12 +6,13 @@ from album_project.state.PageState import PageState
 def grid() -> rx.Component:
     return rx.center(
         rx.vstack(
-            rx.center(
-                rx.button("Refresh",
-                    on_click= PageState.items_grid,
-                    ),
-                width= "100%",
-            ),
+            # Boton que se utilizaba para refrescar y actualizar el grid de elementos
+            # rx.center(
+            #     rx.button("Refresh", 
+            #         on_click= PageState.items_grid,
+            #         ),
+            #     width= "100%",
+            # ),
             rx.cond(
                 PageState.items_info,
                 rx.vstack(

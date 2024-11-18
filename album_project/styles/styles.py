@@ -14,6 +14,7 @@ STYLESHEETS= [
 
 #SIZES
 class Size(Enum):
+    ZERO= "0px !important"
     XSMALL= "0.2em"
     SMALL= "0.5 em"
     MEDIUM= "0.8em"
@@ -93,6 +94,16 @@ denied_button_style= dict(
 
 trash_button_style= dict(
     background_color="transparent",
+    justify_content= "right",
+    padding= Size.ZERO.value,
     _hover= {
         "color": "red"}, 
+)
+
+edit_button_style= dict(
+    background_color="transparent",
+    justify_content= "right",
+    padding= Size.ZERO.value,
+    _hover= {
+        "color": Color.SECONDARY.value}, 
 )

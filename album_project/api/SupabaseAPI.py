@@ -8,11 +8,10 @@ from album_project.model.Items import Items
 class SupabaseAPI:
     
     dotenv.load_dotenv()
-    
+
     SUPABASE_URL = os.environ.get("SUPABASE_URL")
     SUPABASE_KEY = os.environ.get("SUPABASE_KEY")
 
-    
     
     def __init__(self) -> None:
         if self.SUPABASE_URL != None and self.SUPABASE_KEY != None:
@@ -37,10 +36,10 @@ class SupabaseAPI:
                     )
         return items_data
 
-    def insert_items(self, title: str, description: str) -> dict:
+    def insert_item(self, title: str, description: str) -> dict:
 
         date=  datetime.date.today()
-        data= {"title": title, "description": description, "creation_date": date.isoformat()}
+        data= {"title": title.title(), "description": description, "creation_date": date.isoformat()}
         
         insert_response= self.supabase.table("items").insert(data).execute()
 
@@ -48,17 +47,38 @@ class SupabaseAPI:
 
         if insert_response.data:
             message= {"message": "Item inserted sucessfully", "form_data": data}
-            return message
+            #return message
         else:
             message= {"message": "Failed to insert item", "error": insert_response.error}
-            return message
-        
+            #return message
+        return message
 
     def delete_item(self, item_id: int):
+        
+        message: dict= {}
         #print(item_id)
         delete_response= self.supabase.table("items").delete().eq("id",item_id).execute()
 
         if delete_response.data:
-            return {"message": "Item deleted successfully"}
+            message= {"message": "Item deleted successfully"}
+            # return {"message": "Item deleted successfully"}
+            #return message
         else:
-            return {"message": "Failed to delete item", "error": delete_response.error}
+            message= {"message": "Failed to delete item", "error": delete_response.error}
+            #return {"message": "Failed to delete item", "error": delete_response.error}
+        
+        return message
+    
+    def update_item(self, item_id: int, title: str, description: str) -> dict:
+
+        data= {"title": title.title(), "description": description}
+        print(data)
+
+        update_response= self.supabase.table("items").update(data).eq("id",item_id).execute()
+
+        if update_response.data:
+            message= {"message": "Item upadted successfully"}
+        else:
+            message= {"message": "Failed to update item"}
+        
+        return message
