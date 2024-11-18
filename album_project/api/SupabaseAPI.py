@@ -41,27 +41,24 @@ class SupabaseAPI:
 
         date=  datetime.date.today()
         data= {"title": title, "description": description, "creation_date": date.isoformat()}
-        response= self.supabase.table("items").insert(data).execute()
+        
+        insert_response= self.supabase.table("items").insert(data).execute()
 
         message: dict= {}
 
-        if response.data:
+        if insert_response.data:
             message= {"message": "Item inserted sucessfully", "form_data": data}
             return message
         else:
-            message= {"message": "Failed to insert item", "error": response.error}
+            message= {"message": "Failed to insert item", "error": insert_response.error}
             return message
         
 
-    ####################################################
     def delete_item(self, item_id: int):
-        print(item_id)
+        #print(item_id)
+        delete_response= self.supabase.table("items").delete().eq("id",item_id).execute()
 
-        data= {"id": item_id}
-        print(data)
-        response= self.supabase.table("items").delete().eq("id",item_id).execute()
-
-        if response.data:
+        if delete_response.data:
             return {"message": "Item deleted successfully"}
         else:
-            return {"message": "Failed to delete item", "error": response.error}
+            return {"message": "Failed to delete item", "error": delete_response.error}

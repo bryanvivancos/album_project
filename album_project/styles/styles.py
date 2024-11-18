@@ -27,37 +27,72 @@ BASE_STYLE = {
     "font_family": Font.DEFAULT.value,
     "font_weigth": FontWeight.LIGHT.value,
     "font_size": Size.DEFAULT.value,
-    "font_color": TextColor.BODY.value,
     "background_color": Color.BACKGROUND.value,
-    rx.accordion.item:{
-        "background_color": Color.BACKGROUND.value,
+    rx.accordion.root:{
+        "background_color": Color.PRIMARY.value,
     },
-    rx.accordion.trigger:{
+    rx.accordion.item: {
+        "background_color": Color.PRIMARY.value,
+    },
+    rx.accordion.trigger: {
+        "background_color": Color.PRIMARY.value,
         "_hover": {
-            "background_color": Color.SECONDARY.value,
+            "background_color": Color.BACKGROUND.value,
         },
     },
     rx.button: {
         "background_color": Color.PRIMARY.value,
     },
-    # rx.link : {
-    #     "text_decoration": "none",
-    #     "_hover": {},
-    # },
+    rx.text: {
+        "color": TextColor.BODY.value,
+    },
 }
 
-title_style = dict(
+title_style= dict(
     width="100%",
     font_size=Size.DEFAULT.value,
     font_weigth=FontWeight.BOLD.value,
 ),
 
-link_style = dict(
+link_style= dict(
     text_decoration= "none",
     _hover= {},
 )
 
-item_data_style = dict(
-    background_color=Color.PRIMARY.value,
+item_data_style= dict(
+    background_color= Color.PRIMARY.value,
     border_radius= Size.DEFAULT.value,
+    _hover= {"background_color": Color.BACKGROUND.value},
+)
+
+#### STYLES DE ACCORDION COMPONENT
+
+accordion_style= dict(
+    background_color= Color.BACKGROUND.value,
+)
+
+accordion_trigger_style= dict(
+    _hover= {"background_color": Color.SECONDARY.value},
+)
+
+
+#### STYLES DE BOTONES 
+
+submit_button_style= dict(
+    background_color= Color.BACKGROUND.value,
+    _hover= {"color": Color.SECONDARY.value},
+)
+
+confirm_button_style= dict(
+    _hover= {"color": Color.SECONDARY.value},
+)
+
+denied_button_style= dict(
+    _hover= {"color": "red"}, 
+)
+
+trash_button_style= dict(
+    background_color="transparent",
+    _hover= {
+        "color": "red"}, 
 )

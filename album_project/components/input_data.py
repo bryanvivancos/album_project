@@ -1,7 +1,7 @@
 import reflex as rx
+import album_project.styles.styles as styles
 from album_project.styles.colors import Color as Color
 from album_project.state.PageState import PageState
-from album_project.api.SupabaseAPI import SupabaseAPI
 
 
 def input_data() -> rx.Component:
@@ -18,28 +18,23 @@ def input_data() -> rx.Component:
                     placeholder="Description",
                     name="description",
                     width="100%",
-                    #required= True,
+                    required= True,
                 ),
                 rx.center(
-                    rx.hstack(
-                        rx.button(
-                            "Submit", 
-                            type="submit",
-                        ),
-                        rx.button(
-                            "Delete",
-                            type="submit",
-                            #on_click= PageState.delete_button,
-                        ),
+                    rx.button(
+                        "Submit", 
+                        type="submit",
+                        style= styles.submit_button_style,
+                        #on_click= PageState.items_grid,
+                        #[
+                        #     PageState.handle_submit,
+                        # ],
                     ),
                     width="100%",
                 ),
             ),
             on_submit=[
-                PageState.delete_button,
-                #PageState.handle_submit,
-                #PageState.items_grid, 
-                #rx.window_alert(" "),
+                PageState.handle_submit,
             ],
             reset_on_submit=True,
         ),

@@ -10,8 +10,6 @@ async def input_api(title: str, description: str) -> list[Items]:
     return SUPABASE_API.insert_items(title, description)
    
 
-
-##############################################3
 async def delete_api(id: int):
     #print(id)
     return SUPABASE_API.delete_item(id)

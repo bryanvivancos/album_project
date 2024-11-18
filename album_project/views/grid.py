@@ -34,5 +34,5 @@ def grid() -> rx.Component:
             width= "480px",
         ),
         width= "100%",
+        padding_bottom= Size.DEFAULT.value, 
     )
-            
