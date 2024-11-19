@@ -30,7 +30,7 @@ def item_data(data: Items) -> rx.Component:
                     color= TextColor.FOOTER,
                 ),
                 rx.stack(
-                    edit_item_button(data.id),
+                    edit_item_button(),
                     item_trash_button(data.title, data.id), #boton de papelera en cada item
                     spacing= "2",
                 ),

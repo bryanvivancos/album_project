@@ -18,7 +18,9 @@ class SupabaseAPI:
             self.supabase: Client = create_client(
                 self.SUPABASE_URL, self.SUPABASE_KEY
             )
+
     
+    ### LLAMADA DE DATOS AL CARGAR LA PAGINA
     def select_items(self) -> list[Items]:
         
         response = self.supabase.table("items").select("*").execute()
@@ -36,6 +38,8 @@ class SupabaseAPI:
                     )
         return items_data
 
+
+    ### INGRESO DE DATOS A LA BASE
     def insert_item(self, title: str, description: str) -> dict:
 
         date=  datetime.date.today()
@@ -46,13 +50,20 @@ class SupabaseAPI:
         message: dict= {}
 
         if insert_response.data:
-            message= {"message": "Item inserted sucessfully", "form_data": data}
-            #return message
+            #message= {"message": "Item inserted sucessfully", "form_data": data}
+            return rx.toast.success(
+                    f"Item inserted sucessfully, 'form_data': {data}",
+                    position="bottom-right",
+                    )
         else:
-            message= {"message": "Failed to insert item", "error": insert_response.error}
-            #return message
-        return message
+            #message= {"message": "Failed to insert item", "error": insert_response.error}
+            return rx.toast.error(
+                    f"Failed to insert item, 'error': {insert_response.error}",
+                    position="bottom-right",
+                    )
 
+
+    ### ELIMINACION DE ELEMENTOS DE LA BASE
     def delete_item(self, item_id: int):
         
         message: dict= {}
@@ -69,10 +80,11 @@ class SupabaseAPI:
         
         return message
     
-    def update_item(self, item_id: int, title: str, description: str) -> dict:
+
+    ### ACTUALIZACION DE ELEMTNOS DE LA BASE
+    def update_item(self, title: str, description: str, item_id: int) -> dict:
 
         data= {"title": title.title(), "description": description}
-        print(data)
 
         update_response= self.supabase.table("items").update(data).eq("id",item_id).execute()
 

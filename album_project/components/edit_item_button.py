@@ -3,7 +3,7 @@ import album_project.styles.styles as styles
 from album_project.state.PageState import PageState
 from album_project.styles.styles import Size
 
-def edit_item_button(item_id: int) -> rx.Component:
+def edit_item_button() -> rx.Component:
     return rx.dialog.root(
                 rx.dialog.trigger(
                     rx.button(rx.icon("pencil", size= 16),
@@ -39,32 +39,32 @@ def edit_item_button(item_id: int) -> rx.Component:
                             rx.dialog.close(
                                 rx.button(
                                     "Confirmar",
-                                    type= "submit",
+                                    #type= "submit",
                                     style= styles.confirm_button_style,
-                                    
+                                    on_click= PageState.prueba,
                                     # on_click= [
                                     #     PageState.update_button(
+                                    #             item_id,
                                     #             PageState.title_input, 
                                     #             PageState.description_input,
-                                    #             item_id,
                                     #             ),
-                                    #         PageState.items_grid,
-                                    #     ],
+                                    #     PageState.items_grid,
+                                    #    ],
                                 ),
-                                # rx.cond(
-                                #         SupabaseAPI.delete_item.del,
-                                #         rx.toast.s("gdsfs"),
-                                #     ),
                             ),
                             spacing= Size.DEFAULT.value, 
                             margin_top= Size.DEFAULT.value,
                             justify= "end",
                         ),
-                        on_submit= [
-                            PageState.update_button(item_id),
-                            PageState.items_grid(),
-                        ],
-                        reset_on_submit=True,
+                        # on_submit= [
+                        #     PageState.prueba
+                        #     #(item_id,
+                        #          #   PageState.title_input, 
+                        #           #  PageState.description_input
+                        #     #        ),
+                        #     #PageState.items_grid(),
+                        # ],
+                        reset_on_submit=False,
                     ),
                 ),
             ),
