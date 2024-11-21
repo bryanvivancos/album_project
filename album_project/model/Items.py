@@ -1,6 +1,6 @@
 import reflex as rx
 
 class Items(rx.Base):
-    id: str | None
+    id: str
     title: str
     description: str

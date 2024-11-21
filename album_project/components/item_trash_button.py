@@ -34,7 +34,7 @@ def item_trash_button(item_title:str, item_id: int) -> rx.Component:
                             #         rx.toast.s("gdsfs"),
                             #     ),
                         ),
-                        spacing= Size.DEFAULT.value, 
+                        spacing= "2", 
                         margin_top= Size.DEFAULT.value,
                         justify= "end",
                     ),

@@ -18,7 +18,7 @@ class Size(Enum):
     XSMALL= "0.2em"
     SMALL= "0.5 em"
     MEDIUM= "0.8em"
-    DEFAULT= "1em"
+    DEFAULT= "1em"  ##antes 1em
     XBIG= "1.5em"
     SUPERBIG= "10em"
 

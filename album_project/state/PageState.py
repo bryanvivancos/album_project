@@ -8,11 +8,11 @@ class PageState(rx.State):
     
     items_info: list[Items]
 
-    #form_data: dict= {} #para agregar datos desde el formulario
-    #title_input: str #para agregar elementos individualmente
-    #description_input: str #para agregar elementos individualmente
+    form_data: dict= {} #para agregar datos desde el formulario
+    # title_input: str #para agregar elementos individualmente
+    # description_input: str #para agregar elementos individualmente
+    item_id: int #para delete button
 
-    #item_id: int para delete button
 
     ### LLAMADA DE DATOS AL CARGAR LA PAGINA
     async def items_grid(self):
@@ -32,23 +32,24 @@ class PageState(rx.State):
 
     ### ELIMINACION DE ELEMENTOS DE LA BASE
     @rx.event
-    async def delete_button(self, item_id: int):
+    async def delete_button(self, item_id):
         # print(int(form_data["title"]), type(int(form_data["title"])))
         await delete_api(item_id)
 
 
     ### ACTUALIZACION DE ELEMENTOS DE LA BASE
     @rx.event
-    async def update_button(self, form_data: dict):
-        #await update_api(item_id, form_data['title'], form_data['description'])
+    async def update_button(self,form_data, item_id):
+        #await update_api(form_data['title'], form_data['description'], item_id)
         #print(self.title_input, self.description_input, item_id)
-        print(form_data)
+        print(form_data['title'],form_data['description'], item_id)
         #await update_api(self.title_input, self.description_input, item_id,)
 
 
     @rx.event
     def prueba(self,form_data: dict):
-        print(form_data)
+        #print(form_data)
+        print("hola")
 
 
         

@@ -3,7 +3,7 @@ import album_project.styles.styles as styles
 from album_project.state.PageState import PageState
 from album_project.styles.styles import Size
 
-def edit_item_button() -> rx.Component:
+def edit_item_button(item_id: int) -> rx.Component:
     return rx.dialog.root(
                 rx.dialog.trigger(
                     rx.button(rx.icon("pencil", size= 16),
@@ -11,7 +11,7 @@ def edit_item_button() -> rx.Component:
                     ),
                 ),
                 rx.dialog.content(
-                    rx.dialog.title("Actualizar Elemento"),
+                    rx.dialog.title(f"Actualizar Elemento. Cod. {item_id}"),
                     rx.form(
                         rx.vstack(
                             rx.input(
@@ -41,14 +41,14 @@ def edit_item_button() -> rx.Component:
                                     "Confirmar",
                                     #type= "submit",
                                     style= styles.confirm_button_style,
-                                    on_click= PageState.prueba,
+                                    # #on_submit= PageState.prueba,
                                     # on_click= [
-                                    #     PageState.update_button(
-                                    #             item_id,
+                                    #     PageState.prueba(
+                                    #             #item_id,
                                     #             PageState.title_input, 
                                     #             PageState.description_input,
                                     #             ),
-                                    #     PageState.items_grid,
+                                    #     #PageState.items_grid,
                                     #    ],
                                 ),
                             ),
@@ -56,14 +56,14 @@ def edit_item_button() -> rx.Component:
                             margin_top= Size.DEFAULT.value,
                             justify= "end",
                         ),
-                        # on_submit= [
-                        #     PageState.prueba
-                        #     #(item_id,
-                        #          #   PageState.title_input, 
-                        #           #  PageState.description_input
-                        #     #        ),
-                        #     #PageState.items_grid(),
-                        # ],
+                        on_submit= [
+                            lambda: PageState.update_button(item_id),
+                            #(item_id,
+                                 #   PageState.title_input, 
+                                  #  PageState.description_input
+                            #        ),
+                            #PageState.items_grid,
+                        ],
                         reset_on_submit=False,
                     ),
                 ),

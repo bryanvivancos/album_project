@@ -26,7 +26,7 @@ def index() -> rx.Component:
                 bg_color=Color.SECONDARY.value,
                 border_radius= Size.DEFAULT.value,
                 padding= Size.DEFAULT.value,
-                spacing= Size.XBIG.value,
+                spacing= "4",
             ), 
             margin_x=Size.MEDIUM.value,
         ),

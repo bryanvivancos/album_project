@@ -7,7 +7,7 @@ from album_project.components.item_trash_button import item_trash_button
 from album_project.components.edit_item_button import edit_item_button
 
 def item_data(data: Items) -> rx.Component:
-    return rx.link(
+    return rx.box(
         rx.box(
             # rx.image(
             #     src= data.image,
@@ -30,7 +30,7 @@ def item_data(data: Items) -> rx.Component:
                     color= TextColor.FOOTER,
                 ),
                 rx.stack(
-                    edit_item_button(),
+                    edit_item_button(data.id),
                     item_trash_button(data.title, data.id), #boton de papelera en cada item
                     spacing= "2",
                 ),
@@ -40,8 +40,8 @@ def item_data(data: Items) -> rx.Component:
             style= styles.item_data_style,
             padding= Size.MEDIUM.value,
         ),
-        href="",
-        disable= True,
+        # href="",
+        # disable= True,
         style= styles.link_style,
     )
 
