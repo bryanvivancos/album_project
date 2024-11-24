@@ -12,7 +12,7 @@ async def items_api() -> list[Items]:
 ### INGRESO DE DATOS A LA BASE
 async def input_api(title: str, description: str) -> list[Items]:
     return SUPABASE_API.insert_item(title, description)
-   
+
 
 ### ELIMINACION DE ELEMENTOS DE LA BASE
 async def delete_api(item_id: int):
@@ -20,6 +20,6 @@ async def delete_api(item_id: int):
     return SUPABASE_API.delete_item(item_id)
 
 
-### ACTUALIZACION DE ELEMTNOS DE LA BASE
+### ACTUALIZACION DE ELEMENTOS DE LA BASE
 async def update_api(title: str, description: str, item_id: int) -> list[Items]:
     return SUPABASE_API.update_item(title, description, item_id)

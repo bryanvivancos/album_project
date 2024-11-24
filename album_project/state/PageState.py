@@ -9,9 +9,7 @@ class PageState(rx.State):
     items_info: list[Items]
 
     form_data: dict= {} #para agregar datos desde el formulario
-    # title_input: str #para agregar elementos individualmente
-    # description_input: str #para agregar elementos individualmente
-    item_id: int #para delete button
+    item_id: int #captura id de elemento
 
 
     ### LLAMADA DE DATOS AL CARGAR LA PAGINA
@@ -23,33 +21,37 @@ class PageState(rx.State):
 
     ### INGRESO DE DATOS A LA BASE
     @rx.event
-    async def handle_submit(self,form_data: dict):
-        #print(self.title_input, self.description_input)
-        #print(form_data['title'], form_data['description'], datetime.date.today())
-        #await input_api(self.title_input, self.description_input) #agrega los datos individualmente
-        await input_api(form_data['title'], form_data['description'])  #agrega datos desde el formulario
+    async def handle_submit(self,form_data):
+        submit_response= await input_api(form_data['title'], form_data['description'])  #agrega datos desde el formulario
+        
+        if submit_response.get('message'):
+            rx.toast.success(submit_response['message'])
+        else:
+            rx.toast.error(submit_response['message'])
         
 
     ### ELIMINACION DE ELEMENTOS DE LA BASE
     @rx.event
     async def delete_button(self, item_id):
-        # print(int(form_data["title"]), type(int(form_data["title"])))
-        await delete_api(item_id)
+        delete_response= await delete_api(item_id)
+        
+        if delete_response.get('message'):
+            rx.toast.success("hola")
+        else:
+            rx.toast.error(delete_response['message'])
 
 
     ### ACTUALIZACION DE ELEMENTOS DE LA BASE
     @rx.event
-    async def update_button(self,form_data, item_id):
-        #await update_api(form_data['title'], form_data['description'], item_id)
-        #print(self.title_input, self.description_input, item_id)
-        print(form_data['title'],form_data['description'], item_id)
-        #await update_api(self.title_input, self.description_input, item_id,)
-
-
+    def item_id_update(self,id_item: int):
+        self.item_id = id_item #actualiza valor al id del elemento seleccionado
+    
     @rx.event
-    def prueba(self,form_data: dict):
-        #print(form_data)
-        print("hola")
-
-
+    async def update_button(self,form_data):
+        #print(form_data, self.item_id)
+        update_response= await update_api(form_data['title'], form_data['description'], self.item_id)
         
+        if update_response.get('message'):
+            rx.toast.success(update_response['message'])
+        else:
+            rx.toast.error(update_response['message'])

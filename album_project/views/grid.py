@@ -28,7 +28,10 @@ def grid() -> rx.Component:
                     spacing= "2",
                     width= "100%",
                 ),
-                rx.text("No items found"),  # Muestra un mensaje si `items` está vacio
+                rx.center(
+                    rx.text("No items found"),  # Muestra un mensaje si `items` está vacio
+                    width= "100%",
+                ),
             ),
             on_mount= PageState.items_grid,
             spacing= "2",

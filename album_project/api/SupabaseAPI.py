@@ -24,7 +24,6 @@ class SupabaseAPI:
     def select_items(self) -> list[Items]:
         
         response = self.supabase.table("items").select("*").execute()
-        
         items_data = []
         
         if len(response.data) > 0:
@@ -47,50 +46,30 @@ class SupabaseAPI:
         
         insert_response= self.supabase.table("items").insert(data).execute()
 
-        message: dict= {}
-
         if insert_response.data:
-            #message= {"message": "Item inserted sucessfully", "form_data": data}
-            return rx.toast.success(
-                    f"Item inserted sucessfully, 'form_data': {data}",
-                    position="bottom-right",
-                    )
+            return {"message": "Item inserted sucessfully", "form_data": data}
         else:
-            #message= {"message": "Failed to insert item", "error": insert_response.error}
-            return rx.toast.error(
-                    f"Failed to insert item, 'error': {insert_response.error}",
-                    position="bottom-right",
-                    )
+            return {"message": "Failed to insert item", "error": insert_response.error}
 
 
     ### ELIMINACION DE ELEMENTOS DE LA BASE
     def delete_item(self, item_id: int):
         
-        message: dict= {}
-        #print(item_id)
         delete_response= self.supabase.table("items").delete().eq("id",item_id).execute()
 
-        if delete_response.data:
-            message= {"message": "Item deleted successfully"}
-            # return {"message": "Item deleted successfully"}
-            #return message
+        if delete_response:
+            return {"message": "Item deleted successfully"}
         else:
-            message= {"message": "Failed to delete item", "error": delete_response.error}
-            #return {"message": "Failed to delete item", "error": delete_response.error}
+            return {"message": "Failed to delete item", "error": delete_response.error}
         
-        return message
-    
 
     ### ACTUALIZACION DE ELEMTNOS DE LA BASE
     def update_item(self, title: str, description: str, item_id: int) -> dict:
 
         data= {"title": title.title(), "description": description}
-
         update_response= self.supabase.table("items").update(data).eq("id",item_id).execute()
 
-        if update_response.data:
-            message= {"message": "Item upadted successfully"}
+        if update_response:
+            return {"message": "Item updated successfully"}
         else:
-            message= {"message": "Failed to update item"}
-        
-        return message
+            return {"message": "Failed to update item"}
