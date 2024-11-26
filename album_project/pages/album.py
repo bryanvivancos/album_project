@@ -3,7 +3,7 @@ import album_project.styles.styles as styles
 from album_project.styles.colors import Color
 from album_project.styles.styles import Size
 from album_project.views.grid import grid
-from album_project.components.navbar import navbar
+from album_project.components.navbar_login import navbar
 from album_project.views.menu_bar import menu_bar
 
 
