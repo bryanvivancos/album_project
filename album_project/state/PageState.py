@@ -1,5 +1,6 @@
 import reflex as rx
 import datetime
+import re
 from album_project.api.api import items_api, input_api, delete_api,update_api
 from album_project.model.Items import Items
 
@@ -8,20 +9,20 @@ class PageState(rx.State):
     
     login_state: bool= True #para identificar si el usuario esta logueado o no
 
-    ## Login vars
+## Login vars
     loader: bool= False
     username: str= "ejemplo@mail.com"
     password: str
     error= False
     #response: dict= {}
 
-    ## CRUD vars
+## CRUD vars
     items_info: list[Items]
     form_data: dict= {} #para agregar datos desde el formulario
     item_id: int #captura id de elemento
 
 
-    ### METODO PARA LOGIN
+### METODO PARA LOGIN
     async def loginService(self, login_data: dict):
         self.loader= True
         self.error= False
@@ -35,7 +36,30 @@ class PageState(rx.State):
             self.loader= False
             self.error= True
 
+    @rx.var
+    def user_invalid(self) -> bool:
+        return not (re.match(r"[^@]+@[^@]+.[^@]+", self.username) and "ejemplo@mail.com")
 
+    @rx.var
+    def user_empty(self) -> bool:
+        return not self.username.strip()
+    
+    @rx.var
+    def password_empty(self) -> bool:
+        return not (self.password.strip())
+    
+    @rx.var
+    def validate_fields(self) -> bool:
+        return (
+            self.user_empty
+            or self.user_invalid
+            or self.password_empty
+        )
+
+
+
+#### METODOS DEL CRUD
+    
     ### LLAMADA DE DATOS AL CARGAR LA PAGINA
     async def items_grid(self):
         # data = await items_api()
