@@ -27,17 +27,6 @@ def input_data() -> rx.Component:
                         "Submit", 
                         type="submit",
                         style= styles.submit_button_style,
-                        # on_click= PageState.items_grid,
-                        # on_click= [
-                        #     #agrega los datos individualmente para asi poder actualizar
-                        #     #automaticamente con la funcion items_grid
-                        #     PageState.handle_submit(
-                        #         PageState.title_input, 
-                        #         PageState.description_input),
-                        #     PageState.items_grid,
-                        #     # PageState.handle_submit(),
-                        #     # PageState.items_grid(),
-                        # ],
                     ),
                     width="100%",
                 ),

@@ -29,10 +29,6 @@ def item_trash_button(item_title:str, item_id: int) -> rx.Component:
                                     PageState.items_grid,
                                     ],
                             ),
-                            # rx.cond(
-                            #         SupabaseAPI.delete_item.del,
-                            #         rx.toast.s("gdsfs"),
-                            #     ),
                         ),
                         spacing= "2", 
                         margin_top= Size.DEFAULT.value,

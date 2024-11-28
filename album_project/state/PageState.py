@@ -6,10 +6,34 @@ from album_project.model.Items import Items
 
 class PageState(rx.State):
     
-    items_info: list[Items]
+    login_state: bool= True #para identificar si el usuario esta logueado o no
 
+    ## Login vars
+    loader: bool= False
+    username: str= "ejemplo@mail.com"
+    password: str
+    error= False
+    #response: dict= {}
+
+    ## CRUD vars
+    items_info: list[Items]
     form_data: dict= {} #para agregar datos desde el formulario
     item_id: int #captura id de elemento
+
+
+    ### METODO PARA LOGIN
+    async def loginService(self, login_data: dict):
+        self.loader= True
+        self.error= False
+        #response= rq.post("http: //localhost: 8000/auth/login", json= login_data, headers= {"Content-Type": "application/json"})
+        response= 200
+        if response== 200:
+            #self.response.json()
+            self.loader= False
+            return True
+        else: 
+            self.loader= False
+            self.error= True
 
 
     ### LLAMADA DE DATOS AL CARGAR LA PAGINA

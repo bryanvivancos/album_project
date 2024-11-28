@@ -1,5 +1,7 @@
 import reflex as rx
 import album_project.styles.styles as styles
+from album_project.styles.fonts import FontWeight
+from album_project.state.PageState import PageState
 from album_project.styles.colors import Color
 from album_project.styles.styles import Size
 from album_project.views.grid import grid
@@ -16,8 +18,16 @@ def index() -> rx.Component:
         navbar(),
         rx.center(
             rx.vstack(
-                menu_bar(),
-                
+                rx.cond(
+                    PageState.login_state,
+                    menu_bar(),
+                    rx.center(
+                        rx.text("Inicia sesion para interactuar con la base",
+                                color= Color.BACKGROUND.value,
+                                font_weight= FontWeight.BOLD.value,),
+                        width= "100%",
+                    ),
+                ),
                 rx.divider(),
                 grid(),
                 max_width= styles.MAX_WIDTH,

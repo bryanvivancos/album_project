@@ -1,5 +1,6 @@
 import reflex as rx 
 import album_project.styles.styles as styles
+from album_project.state.PageState import PageState
 from album_project.styles.colors import TextColor 
 from album_project.model.Items import Items
 from album_project.styles.styles import Size
@@ -29,10 +30,13 @@ def item_data(data: Items) -> rx.Component:
                     size= "1px",
                     color= TextColor.FOOTER,
                 ),
-                rx.stack(
-                    edit_item_button(data.id),
-                    item_trash_button(data.title, data.id), #boton de papelera en cada item
-                    spacing= "2",
+                rx.cond(
+                    PageState.login_state,
+                    rx.stack(
+                        edit_item_button(data.id),
+                        item_trash_button(data.title, data.id), #boton de papelera en cada item
+                        spacing= "2",
+                    ),
                 ),
                 justify= "between",
                 align="end",
