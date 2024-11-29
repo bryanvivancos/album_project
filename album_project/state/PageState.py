@@ -7,11 +7,11 @@ from album_project.model.Items import Items
 
 class PageState(rx.State):
     
-    login_state: bool= True #para identificar si el usuario esta logueado o no
+    login_state: bool  #para identificar si el usuario esta logueado o no
 
 ## Login vars
     loader: bool= False
-    username: str= "ejemplo@mail.com"
+    username: str #= "ejemplo@mail.com"
     password: str
     error= False
     #response: dict= {}
@@ -28,17 +28,29 @@ class PageState(rx.State):
         self.error= False
         #response= rq.post("http: //localhost: 8000/auth/login", json= login_data, headers= {"Content-Type": "application/json"})
         response= 200
-        if response== 200:
-            #self.response.json()
+
+        print(self.username, self.password)
+        
+        # if response== 200:
+        #     #self.response.json()
+        #     self.loader= False
+        #     #return True
+
+        #     self.login_state= True
+
+        if self.username== "admin" and self.password== "admin123":
             self.loader= False
-            return True
+            self.login_state= True
         else: 
             self.loader= False
             self.error= True
 
-    @rx.var
-    def user_invalid(self) -> bool:
-        return not (re.match(r"[^@]+@[^@]+.[^@]+", self.username) and "ejemplo@mail.com")
+            self.login_state= False  
+
+
+    # @rx.var
+    # def user_invalid(self) -> bool:
+    #     return not (re.match(r"[^@]+@[^@]+.[^@]+", self.username) and "ejemplo@mail.com")
 
     @rx.var
     def user_empty(self) -> bool:
@@ -52,7 +64,7 @@ class PageState(rx.State):
     def validate_fields(self) -> bool:
         return (
             self.user_empty
-            or self.user_invalid
+            #or self.user_invalid
             or self.password_empty
         )
 

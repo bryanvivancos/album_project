@@ -1,7 +1,7 @@
 import reflex as rx 
 import album_project.styles.styles as styles
 from album_project.styles.colors import Color
-from .login import login
+from ..views.login import login
 
 def navbar() -> rx.Component:
     return rx.box(

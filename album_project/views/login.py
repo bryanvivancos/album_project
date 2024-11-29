@@ -1,5 +1,6 @@
 import reflex as rx 
 import album_project.styles.styles as styles
+from ..state.PageState import PageState
 
 def login() -> rx.Component:
     return rx.dialog.root(
@@ -16,11 +17,17 @@ def login() -> rx.Component:
                     rx.form(
                         rx.flex(
                             rx.input(
-                                placeholder="User", name="user"
+                                placeholder="Username", 
+                                name="username",
+                                on_change= PageState.set_username,
+
+
                             ),
                             rx.input(
                                 placeholder="Password",
                                 name="password",
+                                on_change= PageState.set_password,
+                                type= "password",
                             ),
                             rx.flex(
                                 rx.dialog.close(
@@ -41,8 +48,66 @@ def login() -> rx.Component:
                             direction="column",
                             spacing="4",
                         ),
-                    )
-                )
+                        on_submit=[
+                            PageState.loginService
+                        ],
+                        reset_on_submit= True,
+                    ),
+                    #############################
+                    # rx.form.root(
+                    #     rx.flex(
+                    #         field_form_component_general(
+                    #             "Usuario",
+                    #             "Ingrese su correo",
+                    #             "username",
+                    #             "Ingrese un correo valido",
+                    #             PageState.set_username,
+                    #             PageState.user_invalid
+                    #         ),
+                    #         field_form_component(
+                    #             "Contraseña",
+                    #             "Ingrese su contraseña",
+                    #             "password",
+                    #             PageState.set_password,
+                    #             "password"
+                    #         ),
+                    #         rx.flex(
+                    #             rx.dialog.close(
+                    #                 rx.button(
+                    #                     "Cancelar",
+                    #                     style= styles.denied_button_style,
+                    #                 ),
+                    #             ),
+                    #             rx.dialog.close(
+                    #                 rx.form.submit(
+                    #                     rx.cond(
+                    #                         PageState.loader,
+                    #                         rx.spinner(color= "red", size= "1"),
+                    #                             rx.button(
+                    #                                 "Log In",
+                    #                                 disabled= PageState.validate_fields,
+                    #                                 style= styles.confirm_button_style,
+                    #                             ),
+                    #                     ),
+                    #                     as_child= True,
+                    #                 ),
+                    #             ),
+                    #             spacing="3",
+                    #             justify="end",
+                    #         ),
+                    #         # rx.cond(
+                    #         #     PageState.error,
+                    #         #     rx.toast.error("Credenciales incorrectas"),
+                    #         # ),
+                    #         direction="column",
+                    #         spacing="4",
+                    #     ),
+                    #     on_submit=[
+                    #         PageState.loginService
+                    #     ],
+                    #     reset_on_submit= True,
+                    # )
+                ),
             ),
 
 
