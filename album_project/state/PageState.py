@@ -1,11 +1,17 @@
 import reflex as rx
 import datetime
+import os
+import dotenv
 import re
 from album_project.api.api import items_api, input_api, delete_api,update_api
 from album_project.model.Items import Items
 
 
 class PageState(rx.State):
+    
+    dotenv.load_dotenv()
+    USER_KEY=  os.environ.get("USER_KEY")
+    PASS_KEY= os.environ.get("PASS_KEY")
     
     login_state: bool  #para identificar si el usuario esta logueado o no
 
@@ -38,7 +44,7 @@ class PageState(rx.State):
 
         #     self.login_state= True
 
-        if self.username== "admin" and self.password== "admin123":
+        if self.username== self.USER_KEY and self.password== self.PASS_KEY:
             self.loader= False
             self.login_state= True
         else: 
@@ -46,6 +52,9 @@ class PageState(rx.State):
             self.error= True
 
             self.login_state= False  
+            
+        self.USER_KEY= ""
+        self.PASS_KEY= ""
 
 
     # @rx.var

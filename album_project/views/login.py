@@ -20,8 +20,6 @@ def login() -> rx.Component:
                                 placeholder="Username", 
                                 name="username",
                                 on_change= PageState.set_username,
-
-
                             ),
                             rx.input(
                                 placeholder="Password",
