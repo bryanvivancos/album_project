@@ -4,7 +4,7 @@ import dotenv
 from supabase import create_client, Client
 from ..api.SupabaseAPI import SupabaseAPI
 
-supabase = SupabaseAPI()
+supabase_client = SupabaseAPI().supabase
 
 class AuthState(rx.State):
 
@@ -16,7 +16,7 @@ class AuthState(rx.State):
     async def login(self, email: str, password: str):
         """Ininica sesion en Supabase"""
         try:
-            login_response= supabase.supabase.auth.sign_in_with_password({"email": email, "password": password})
+            login_response= supabase_client.auth.sign_in_with_password({"email": email, "password": password})
             if login_response.get("error"):
                 self.error_message= login_response["error"]["message"]
                 self.is_authenticated= False
@@ -32,7 +32,7 @@ class AuthState(rx.State):
     async def signup(self, email: str, password: str):
         """Registro de un nuevo usuario en Supabase"""
         try:
-            sign_response= supabase.supabase.auth.sign_up({"email": email,"password": password})
+            sign_response= supabase_client.auth.sign_up({"email": email,"password": password})
             if sign_response.get("error"):
                 self.error_message = sign_response["error"]["message"]
             else:
@@ -43,6 +43,6 @@ class AuthState(rx.State):
     
     async def logout(self):
         """Cierra sesión del usuario."""
-        self.supabase.auth.sign_out()
+        supabase_client.auth.sign_out()
         self.is_authenticated = False
         self.user_email = ""
