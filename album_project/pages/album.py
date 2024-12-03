@@ -1,7 +1,7 @@
 import reflex as rx
 import album_project.styles.styles as styles
 from album_project.styles.fonts import FontWeight
-from album_project.state.PageState import PageState
+from album_project.state.AuthState import AuthState
 from album_project.styles.colors import Color
 from album_project.styles.styles import Size
 from album_project.views.grid import grid
@@ -19,7 +19,7 @@ def index() -> rx.Component:
         rx.center(
             rx.vstack(
                 rx.cond(
-                    PageState.login_state,
+                    AuthState.is_authenticated,
                     menu_bar(),
                     rx.center(
                         rx.text("Inicia sesion para interactuar con la base",

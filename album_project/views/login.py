@@ -1,6 +1,6 @@
 import reflex as rx 
 import album_project.styles.styles as styles
-from ..state.PageState import PageState
+from ..state.AuthState import AuthState
 
 def login() -> rx.Component:
     return rx.dialog.root(
@@ -17,15 +17,15 @@ def login() -> rx.Component:
                     rx.form(
                         rx.flex(
                             rx.input(
-                                placeholder="Username", 
-                                name="username",
-                                on_change= PageState.set_username,
+                                placeholder="User", 
+                                name="user",
+                                on_change= AuthState.set_user_email,
                             ),
                             rx.input(
                                 placeholder="Password",
                                 name="password",
-                                on_change= PageState.set_password,
                                 type= "password",
+                                on_change= AuthState.set_password,
                             ),
                             rx.flex(
                                 rx.dialog.close(
@@ -36,7 +36,7 @@ def login() -> rx.Component:
                                 ),
                                 rx.dialog.close(
                                     rx.button(
-                                        "Submit", type="submit",
+                                        "Login", type="submit",
                                         style= styles.confirm_button_style,
                                     ),
                                 ),
@@ -47,7 +47,7 @@ def login() -> rx.Component:
                             spacing="4",
                         ),
                         on_submit=[
-                            PageState.loginService
+                            AuthState.login(AuthState.user_email, AuthState.password)
                         ],
                         reset_on_submit= True,
                     ),

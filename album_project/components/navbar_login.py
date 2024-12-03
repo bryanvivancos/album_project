@@ -2,6 +2,7 @@ import reflex as rx
 import album_project.styles.styles as styles
 from album_project.styles.colors import Color
 from ..views.login import login
+from ..views.signup import signup
 
 def navbar() -> rx.Component:
     return rx.box(
@@ -15,6 +16,7 @@ def navbar() -> rx.Component:
                 ),
                 rx.hstack(
                     login(), #Dialog que abre el form de login
+                    signup(),
                     spacing="4",
                     justify="end",
                 ),
@@ -39,6 +41,7 @@ def navbar() -> rx.Component:
                     ),
                     rx.menu.content(
                             login(), #Dialog que abre el form de login
+                            signup(),
                             bg= Color.PRIMARY.value,
                     ),
                     justify="end",

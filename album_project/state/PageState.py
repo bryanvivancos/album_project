@@ -9,74 +9,75 @@ from album_project.model.Items import Items
 
 class PageState(rx.State):
     
-    dotenv.load_dotenv()
-    USER_KEY=  os.environ.get("USER_KEY")
-    PASS_KEY= os.environ.get("PASS_KEY")
+#     dotenv.load_dotenv()
+#     USER_KEY=  os.environ.get("USER_KEY")
+#     PASS_KEY= os.environ.get("PASS_KEY")
     
-    login_state: bool  #para identificar si el usuario esta logueado o no
+#     login_state: bool  #para identificar si el usuario esta logueado o no
 
-## Login vars
-    loader: bool= False
-    username: str #= "ejemplo@mail.com"
-    password: str
-    error= False
-    #response: dict= {}
+# ## Login vars
+#     loader: bool= False
+#     username: str #= "ejemplo@mail.com"
+#     password: str
+#     error= False
+#     #response: dict= {}
+
+
+
+# ### METODO PARA LOGIN
+#     async def loginService(self, login_data: dict):
+#         self.loader= True
+#         self.error= False
+#         #response= rq.post("http: //localhost: 8000/auth/login", json= login_data, headers= {"Content-Type": "application/json"})
+#         response= 200
+
+#         print(self.username, self.password)
+        
+#         # if response== 200:
+#         #     #self.response.json()
+#         #     self.loader= False
+#         #     #return True
+
+#         #     self.login_state= True
+
+#         if self.username== self.USER_KEY and self.password== self.PASS_KEY:
+#             self.loader= False
+#             self.login_state= True
+#         else: 
+#             self.loader= False
+#             self.error= True
+
+#             self.login_state= False  
+            
+#         self.USER_KEY= ""
+#         self.PASS_KEY= ""
+
+
+#     # @rx.var
+#     # def user_invalid(self) -> bool:
+#     #     return not (re.match(r"[^@]+@[^@]+.[^@]+", self.username) and "ejemplo@mail.com")
+
+#     @rx.var
+#     def user_empty(self) -> bool:
+#         return not self.username.strip()
+    
+#     @rx.var
+#     def password_empty(self) -> bool:
+#         return not (self.password.strip())
+    
+#     @rx.var
+#     def validate_fields(self) -> bool:
+#         return (
+#             self.user_empty
+#             #or self.user_invalid
+#             or self.password_empty
+#         )
+
 
 ## CRUD vars
     items_info: list[Items]
     form_data: dict= {} #para agregar datos desde el formulario
     item_id: int #captura id de elemento
-
-
-### METODO PARA LOGIN
-    async def loginService(self, login_data: dict):
-        self.loader= True
-        self.error= False
-        #response= rq.post("http: //localhost: 8000/auth/login", json= login_data, headers= {"Content-Type": "application/json"})
-        response= 200
-
-        print(self.username, self.password)
-        
-        # if response== 200:
-        #     #self.response.json()
-        #     self.loader= False
-        #     #return True
-
-        #     self.login_state= True
-
-        if self.username== self.USER_KEY and self.password== self.PASS_KEY:
-            self.loader= False
-            self.login_state= True
-        else: 
-            self.loader= False
-            self.error= True
-
-            self.login_state= False  
-            
-        self.USER_KEY= ""
-        self.PASS_KEY= ""
-
-
-    # @rx.var
-    # def user_invalid(self) -> bool:
-    #     return not (re.match(r"[^@]+@[^@]+.[^@]+", self.username) and "ejemplo@mail.com")
-
-    @rx.var
-    def user_empty(self) -> bool:
-        return not self.username.strip()
-    
-    @rx.var
-    def password_empty(self) -> bool:
-        return not (self.password.strip())
-    
-    @rx.var
-    def validate_fields(self) -> bool:
-        return (
-            self.user_empty
-            #or self.user_invalid
-            or self.password_empty
-        )
-
 
 
 #### METODOS DEL CRUD
