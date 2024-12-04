@@ -37,7 +37,7 @@ class AuthState(rx.State):
                 self.error_message = sign_response["error"]["message"]
             else:
                 self.error_message = "Registration successful! Check your email."
-                return rx.toast.success(self.error_message)
+                print(self.error_message)
         except Exception as e:
             self.error_message = str(e)
     
