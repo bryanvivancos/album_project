@@ -14,19 +14,25 @@ class AuthState(rx.State):
     error_message: str= ""
 
     async def login(self, email: str, password: str):
-        """Ininica sesion en Supabase"""
+        """Inicia sesion en Supabase"""
         try:
             login_response= supabase_client.auth.sign_in_with_password({"email": email, "password": password})
+            
+            print(email, password)
+            print(login_response)
+            
             if login_response.get("error"):
                 self.error_message= login_response["error"]["message"]
                 self.is_authenticated= False
             else:
                 self.user_email= email
                 self.is_authenticated= True
+                
+            
         except Exception as e:
             self.error_message= str(e)
 
-        print(self.is_authenticated)
+        print("hola")
 
     
     async def signup(self, email: str, password: str):
@@ -37,7 +43,7 @@ class AuthState(rx.State):
                 self.error_message = sign_response["error"]["message"]
             else:
                 self.error_message = "Registration successful! Check your email."
-                print(self.error_message)
+                self.is_authenticated= True
         except Exception as e:
             self.error_message = str(e)
     
