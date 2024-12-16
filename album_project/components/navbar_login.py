@@ -1,8 +1,10 @@
 import reflex as rx 
 import album_project.styles.styles as styles
 from album_project.styles.colors import Color
+from album_project.state.AuthState import AuthState
 from ..views.login import login
 from ..views.signup import signup
+from ..views.logout import logout
 
 def navbar() -> rx.Component:
     return rx.box(
@@ -15,8 +17,14 @@ def navbar() -> rx.Component:
                     align_items="center",
                 ),
                 rx.hstack(
-                    login(), #Dialog que abre el form de login
-                    signup(),
+                    rx.cond(
+                        AuthState.is_authenticated,
+                        logout(),
+                        rx.hstack(
+                            login(), #Dialog que abre el form de login
+                            signup(),
+                        )
+                    ),
                     spacing="4",
                     justify="end",
                 ),
