@@ -1,12 +1,11 @@
 import reflex as rx 
-import os
-import dotenv
-from supabase import create_client, Client
 from ..api.SupabaseAPI import SupabaseAPI
 
 supabase_client = SupabaseAPI().supabase
 
 class AuthState(rx.State):
+
+    which_dialog_open: str= ""
 
     user_email: str= ""
     password: str= ""
@@ -18,8 +17,6 @@ class AuthState(rx.State):
         try:
             login_response= supabase_client.auth.sign_in_with_password({"email": email, "password": password})
             
-            print(email, password)
-            
             if login_response.user is None:
                 self.error_message = "Invalid email or password"
                 self.is_authenticated= False
@@ -29,8 +26,6 @@ class AuthState(rx.State):
         except Exception as e:
             self.error_message= str(e)
 
-        print(self.is_authenticated)
-        print("hola")
 
     
     async def signup(self, email: str, password: str):
@@ -45,6 +40,7 @@ class AuthState(rx.State):
                 self.is_authenticated= True
         except Exception as e:
             self.error_message = str(e)
+            
             
     
     async def logout(self):

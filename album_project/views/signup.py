@@ -4,12 +4,12 @@ from ..state.AuthState import AuthState
 
 def signup() -> rx.Component:
     return rx.dialog.root(
-                rx.dialog.trigger(
-                    rx.button(
-                        rx.icon("door-closed", size=16),
-                        rx.text("Sign up", size="4"),
-                    )
-                ),
+                # rx.dialog.trigger(
+                #     rx.button(
+                #         rx.icon("door-closed", size=16),
+                #         rx.text("Sign up", size="4"),
+                #     )
+                # ),
                 rx.dialog.content(
                     rx.dialog.title(
                         "Ingresa tu usuario y contraseña"
@@ -52,4 +52,6 @@ def signup() -> rx.Component:
                         reset_on_submit= True,
                     ),
                 ),
+                open= AuthState.which_dialog_open== "signup",
+                on_open_change= AuthState.set_which_dialog_open("") #para abrir el menu de signup al hacer click                
             ),
