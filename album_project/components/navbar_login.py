@@ -30,7 +30,7 @@ def navbar() -> rx.Component:
                                 on_click=AuthState.set_which_dialog_open("login"), #para abrir el menu de login al hacer click      
                             ),
                             rx.button(
-                                rx.icon("circle-user-round", size=16),
+                                rx.icon("door-closed", size=16),
                                 rx.text("Signup", size="4"),   
                                 on_click=AuthState.set_which_dialog_open("signup"), #para abrir el menu de signup al hacer click      
                             ),

@@ -4,12 +4,6 @@ from ..state.AuthState import AuthState
 
 def login() -> rx.Component:
     return rx.dialog.root(
-                # rx.dialog.trigger(
-                #     rx.button(
-                #         rx.icon("circle-user-round", size=16),
-                #         rx.text("Login", size="4"),
-                #     )
-                # ),
                 rx.dialog.content(
                     rx.dialog.title(
                         "Ingresa tu usuario y contraseña"
