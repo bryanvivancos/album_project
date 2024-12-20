@@ -18,7 +18,7 @@ class Size(Enum):
     XSMALL= "0.2em"
     SMALL= "0.5 em"
     MEDIUM= "0.8em"
-    DEFAULT= "1em"  ##antes 1em
+    DEFAULT= "1em"  ##antes 1em para el flex
     XBIG= "1.5em"
     SUPERBIG= "10em"
 
@@ -62,7 +62,7 @@ link_style= dict(
 
 item_data_style= dict(
     background_color= Color.PRIMARY.value,
-    border_radius= Size.DEFAULT.value,
+    border_radius= 10,
     _hover= {"background_color": Color.BACKGROUND.value},
 )
 

@@ -44,7 +44,7 @@ def edit_item_button(item_id: int) -> rx.Component:
                                 on_click= lambda: PageState.item_id_update(item_id),
                             ),
                         ),
-                        spacing= Size.DEFAULT.value, 
+                        spacing= "4", 
                         margin_top= Size.DEFAULT.value,
                         justify= "end",
                     ),    

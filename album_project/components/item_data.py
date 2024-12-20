@@ -18,16 +18,16 @@ def item_data(data: Items) -> rx.Component:
             # ),
             rx.text(
                 data.title,
-                size= "1px",
+                size= "2",
             ),
             rx.text(
                 data.description,
-                size= "1px",
+                size= "2",
             ),
             rx.hstack(
                 rx.text(
                     data.id,
-                    size= "1px",
+                    size= "2",
                     color= TextColor.FOOTER,
                 ),
                 rx.cond(
