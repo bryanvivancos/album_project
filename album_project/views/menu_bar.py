@@ -12,10 +12,10 @@ def menu_bar() -> rx.Component:
                 header= "Ingrese aquí los datos:",
                 content= rx.center(input_data()),
             ),
-            rx.accordion.item(
-                header= "Filtros:",
-                content="Yes. It's unstyled by default, giving you freedom over the look and feel.",
-            ),
+            # rx.accordion.item(
+            #     header= "Filtros:",
+            #     content="Yes. It's unstyled by default, giving you freedom over the look and feel.",
+            # ),
             show_dividers= True,
             collapsible=True,
             width= "420px",
